@@ -1,8 +1,75 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="display-4 fw-bold">
+            Employee Management System
+        </h1>
+
+        <p class="lead text-muted">
+            Manage employees and departments efficiently through a simple and modern interface.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h3 class="fw-bold text-primary">
+                        Employees
+                    </h3>
+
+                    <p class="text-muted">
+                        Create, update, search and manage employee records.
+                    </p>
+
+                    <a asp-controller="Employee"
+                       asp-action="Index"
+                       class="btn btn-primary">
+                        Manage Employees
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h3 class="fw-bold text-success">
+                        Departments
+                    </h3>
+
+                    <p class="text-muted">
+                        Create and organize company departments.
+                    </p>
+
+                    <a asp-controller="Department"
+                       asp-action="Index"
+                       class="btn btn-success">
+                        Manage Departments
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
