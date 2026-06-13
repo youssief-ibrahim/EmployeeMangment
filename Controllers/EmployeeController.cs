@@ -15,10 +15,21 @@ namespace EmployeeMangment.Controllers
             this.employeeRepo = employeeRepo;
             this.departmentRepo = departmentRepo;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? search)
         {
-            var res = await employeeRepo.GetAllwithinclude(e=>e.Department);
-            return View(res);
+            var employees =
+                await employeeRepo.GetAllwithinclude(e => e.Department);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                employees = employees
+                    .Where(e =>
+                        e.FullName.Contains(search) ||
+                        e.Department.Name.Contains(search))
+                    .ToList();
+            }
+
+            return View(employees);
         }
         [HttpGet]
         public async Task<IActionResult> Create()
