@@ -1,56 +1,212 @@
 ﻿@model IEnumerable<Employee>
 
 @{
-	ViewData["Title"] = "Employee List";
+    ViewData["Title"] = "Employee List";
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>Employee Id</th>
-            <th>@Html.DisplayNameFor(Model => Model.FullName)</th>
-            <th>@Html.DisplayNameFor(Model => Model.Email)</th>
-            <th>@Html.DisplayNameFor(Model => Model.MobileNumber)</th>
-            <th>@Html.DisplayNameFor(Model=>Model.JobTitle)</th>
-            <th>@Html.DisplayNameFor(Model => Model.HireDate)</th>
-            <th>@Html.DisplayNameFor(Model => Model.IsActive)</th>
-            <th>@Html.DisplayNameFor(Model => Model.DepartmentId)</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MobileNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.JobTitle)
-                </td>  
-                <td>
-                    @Html.DisplayFor(modelItem => item.HireDate)
-                </td>  
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DepartmentId)
-                </td>
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container mt-5">
+
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold mb-0">Employees</h2>
+            <small class="text-muted">
+                Manage all employees in the system
+            </small>
+        </div>
+
+        <a asp-action="Create"
+           class="btn btn-success">
+            + Create Employee
+        </a>
+
+    </div>
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-light">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Job Title</th>
+                        <th>Hire Date</th>
+                        <th>Status</th>
+                        <th>Department</th>
+                        <th width="180">Actions</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@item.Id</td>
+
+                            <td>
+                                <strong>@item.FullName</strong>
+                            </td>
+
+                            <td>@item.Email</td>
+
+                            <td>@item.MobileNumber</td>
+
+                            <td>@item.JobTitle</td>
+
+                            <td>
+                                @item.HireDate.ToShortDateString()
+                            </td>
+
+                            <td>
+
+                                @if (item.IsActive)
+                                {
+                                    <span class="badge bg-success">
+                                        Active
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">
+                                        Inactive
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+                                @item.Department.Name
+                            </td>
+
+                            <td>
+
+                                <a asp-action="Edit"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+
+                                <button type="button"
+                                        class="btn btn-danger btn-sm"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"
+                                        data-id="@item.Id">
+
+                                    Delete
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    ```
+
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1">
+
+    ```
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Delete Employee
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                Are you sure you want to delete this employee?
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                    No
+                </button>
+
+                <form asp-action="Delete" method="post">
+
+                    <input type="hidden"
+                           id="employeeId"
+                           name="id" />
+
+                    <button type="submit"
+                            class="btn btn-danger">
+                        Yes Delete
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+    ```
+
+</div>
+
+@section Notification
+{
+    @if (TempData["Alert"] != null)
+    {
+         <script>
+              toastr.success('@TempData["Alert"]'); </script>
+    }
+
+    
+    <script>
+
+        var deleteModal =
+            document.getElementById('deleteModal');
+
+        deleteModal.addEventListener(
+            'show.bs.modal',
+            function (event) {
+
+                var button =
+                    event.relatedTarget;
+
+                var id =
+                    button.getAttribute('data-id');
+
+                document.getElementById('employeeId').value =
+                    id;
+            });
+
+    </script>
+    
+
+}

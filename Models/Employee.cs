@@ -14,6 +14,6 @@ namespace EmployeeMangment.Models
 
         public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
-        public Department Department { get; set; } = new Department();
+        public Department Department { get; set; } 
     }
 }
