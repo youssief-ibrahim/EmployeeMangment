@@ -44,7 +44,6 @@ The application allows users to manage employees and departments through a simpl
 - SQL Server
 - Bootstrap 5
 - Toastr.js
-- 
 ---
 
 ## Database
