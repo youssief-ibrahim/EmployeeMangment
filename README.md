@@ -161,9 +161,3 @@ Confirmation dialog before deleting a record.
 
 ![Delete Confirmation](Screenshots/TryToDelete.png)
 
----
-
-### Success Operation Message
-Success notification after completing an operation.
-
-![Success Message](Screenshots/CreatedScsussess.png)
