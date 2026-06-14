@@ -78,7 +78,7 @@ Example:
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Server=.;Database=EmployeeMangment;Trusted_Connection=True;TrustServerCertificate=True"
+  "defultconnection": "Server=.;Database=EmployeeMangment;Trusted_Connection=True;TrustServerCertificate=True"
 }
 ```
 
