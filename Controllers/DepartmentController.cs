@@ -60,6 +60,7 @@ namespace EmployeeMangment.Controllers
                    Id = departmentvm.Id,
                    Name = departmentvm.Name
                };
+                 departmentRepo.Update(department);
                 await departmentRepo.SaveAsync();
                 TempData["Alert"] = "updated succfully";
                 return RedirectToAction("Index");
