@@ -97,3 +97,67 @@ Press:
 ```text
 F5
 ```
+
+## Screenshots
+
+### Home Page
+Main dashboard of the Employee Management System.
+
+![Home Page](Screenshots/Home.png)
+
+---
+
+### Employees List
+View all employees with their details and available actions.
+
+![Employees](Screenshots/Employees.png)
+
+---
+
+### Department List
+Manage departments and view existing departments.
+
+![Departments](Screenshots/Department.png)
+
+---
+
+### Create Department
+Create a new department.
+
+![Create Department](Screenshots/CreateDepartment.png)
+
+---
+
+### Department Created Successfully
+Confirmation after successfully creating a department.
+
+![Department Created](Screenshots/CreatedDepartment.png)
+
+---
+
+### Update Department
+Edit existing department information.
+
+![Update Department](Screenshots/UpdateDepartment.png)
+
+---
+
+### Search Functionality
+Search employees by name or department.
+
+![Search](Screenshots/Searching.png)
+
+---
+
+### Employee Validation
+Validation message when submitting invalid employee data.
+
+![Validation](Screenshots/TryToCreate.png)
+
+---
+
+### Delete Confirmation
+Confirmation dialog before deleting a record.
+
+![Delete Confirmation](Screenshots/TryToDelete.png)
+
