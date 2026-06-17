@@ -5,7 +5,6 @@ namespace EmployeeMangment.Reposatory
     public interface IGnericReposatory<T> where T : class
     {
         Task<List<T>> GetAllAsync();
-        Task<List<T>> GetAllwithinclude(params Expression<Func<T, object>>[] includes);
         IQueryable<T> GetQueryable(params Expression<Func<T, object>>[] includes);
         Task<T> GetById(int id);
         Task AddAsync(T entity);

@@ -3,6 +3,7 @@ using EmployeeMangment.Models;
 using EmployeeMangment.Reposatory;
 using EmployeeMangment.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeMangment.Controllers
 {
@@ -17,17 +18,16 @@ namespace EmployeeMangment.Controllers
         }
         public async Task<IActionResult> Index(string? search)
         {
-            var employees =
-                await employeeRepo.GetAllwithinclude(e => e.Department);
+  
+            var query = employeeRepo.GetQueryable(e => e.Department);
 
             if (!string.IsNullOrEmpty(search))
             {
-                employees = employees
-                    .Where(e =>
-                        e.FullName.Contains(search) ||
-                        e.Department.Name.Contains(search))
-                    .ToList();
+                query = query.Where(e =>e.FullName.Contains(search) ||
+                e.Department.Name.Contains(search));
             }
+
+            var employees = await query.ToListAsync();
 
             return View(employees);
         }

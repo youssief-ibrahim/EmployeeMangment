@@ -28,12 +28,6 @@ namespace EmployeeMangment.Reposatory
             return query;
 
         }
-        public async Task<List<T>> GetAllwithinclude(params Expression<Func<T, object>>[] includes)
-        {
-            var query = GetQueryable(includes);
-            var res = await query.ToListAsync();
-            return res;
-        }
         public async Task<T> GetById(int id)
         {
             return await context.Set<T>().FindAsync(id);
